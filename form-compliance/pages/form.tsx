@@ -80,7 +80,6 @@ const Form = () => {
           data={["Capital aberto", "Capital fechado", "Capital misto"]}
           placeholder="Selecione 1"
           classNames={classes}
-          onChange={(e) => setQ2(e.target.value)}
         />
 
         <Select
@@ -89,7 +88,6 @@ const Form = () => {
           data={["Sim", "Não"]}
           placeholder="Selecione Sim ou Não"
           classNames={classes}
-          onChange={(e) => setQ3(e.target.value)}
         />
 
         <Button onClick={processData} className={classes.button}>
