@@ -152,7 +152,7 @@ const ContainedInputs = () => {
         <TextInput
           style={{ marginTop: 20, zIndex: 1 }}
           label="Razão Social"
-          placeholder="15329 Huston 21st"
+          placeholder="Minha Empresa LTDA"
           classNames={classes}
           value={socialReason}
           onChange={handleSocialReason}
@@ -161,7 +161,7 @@ const ContainedInputs = () => {
         <TextInput
           style={{ marginTop: 20, zIndex: 2 }}
           label="CNPJ:"
-          placeholder="XX. XXX. XXX/0001-XX."
+          placeholder="XX.XXX.XXX/0001-XX."
           classNames={classes}
           value={cnpj}
           onChange={handleCnpj}
