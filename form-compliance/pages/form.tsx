@@ -89,6 +89,23 @@ const Form = () => {
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
+        
+        <Select
+          style={{ marginTop: 25, zIndex: 4 }}
+          label="4.	A contratada possui algum integrante da sua administração, seus familiares , incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
+          data={["Sim", "Não"]}
+          placeholder="Selecione Sim ou Não"
+          classNames={classes}
+        />
+        
+        <Select
+          style={{ marginTop: 25, zIndex: 5 }}
+          label=" A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?"
+          data={["Sim", "Não"]}
+          placeholder="Selecione Sim ou Não"
+          classNames={classes}
+        />
+
 
         <Button onClick={processData} className={classes.button}>
           Continuar
