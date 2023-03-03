@@ -97,9 +97,9 @@ const Form = () => {
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
-        <p>
+        <p style={{ marginTop: 25, zIndex: 5 }}>
            A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?
-          </p>
+        </p>
         <Select
           style={{ marginTop: 25, zIndex: 5 }}
           label=""
