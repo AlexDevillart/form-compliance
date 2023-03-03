@@ -65,40 +65,49 @@ const Form = () => {
     <>
       <PageHeader />
       <Container>
+        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+                Qual a principal a atividade da contratada?
+        </Text>
         <TextInput
           style={{ marginTop: 25, zIndex: 1 }}
-          label="Qual a principal a atividade da contratada?"
+          label=""
           placeholder="Escreva aqui."
           classNames={classes}
           //value={socialReason}
           onChange={(e) => setQ1(e.target.value)}
         />
-
+        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+               Qual o tipo de controle do capital da contratada?
+        </Text>
         <Select
           style={{ marginTop: 25, zIndex: 2 }}
-          label="Qual o tipo de controle do capital da contratada?"
+          label=""
           data={["Capital aberto", "Capital fechado", "Capital misto"]}
           placeholder="Selecione 1"
           classNames={classes}
         />
-
+        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+               A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?
+        </Text>
         <Select
           style={{ marginTop: 25, zIndex: 3 }}
-          label="A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
+          label=""
           data={["Sim", "Não"]}
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
-        
+        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+               A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?
+        </Text>
         <Select
           style={{ marginTop: 25, zIndex: 4 }}
-          label="4.	A contratada possui algum integrante da sua administração, seus familiares , incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
+          label=""
           data={["Sim", "Não"]}
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
         <p style={{ marginTop: 25, marfinLeft: 30}}>
-           A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?
+           5.	A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?
         </p>
         <Select
           style={{ marginTop: 25, zIndex: 5 }}
