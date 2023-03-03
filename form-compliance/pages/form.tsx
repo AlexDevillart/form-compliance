@@ -66,7 +66,7 @@ const Form = () => {
       <PageHeader />
       <Container>
         <TextInput
-          style={{ marginTop: 20, zIndex: 1 }}
+          style={{ marginTop: 25, zIndex: 1 }}
           label="Qual a principal a atividade da contratada?"
           placeholder="Escreva aqui."
           classNames={classes}
@@ -75,7 +75,7 @@ const Form = () => {
         />
 
         <Select
-          style={{ marginTop: 20, zIndex: 2 }}
+          style={{ marginTop: 25, zIndex: 2 }}
           label="Qual o tipo de controle do capital da contratada?"
           data={["Capital aberto", "Capital fechado", "Capital misto"]}
           placeholder="Selecione 1"
@@ -83,7 +83,7 @@ const Form = () => {
         />
 
         <Select
-          style={{ marginTop: 20, zIndex: 3 }}
+          style={{ marginTop: 25, zIndex: 3 }}
           label="A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
           data={["Sim", "Não"]}
           placeholder="Selecione Sim ou Não"
