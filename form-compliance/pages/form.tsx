@@ -66,7 +66,7 @@ const Form = () => {
       <PageHeader />
       <Container>
         <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
-                Qual a principal a atividade da contratada?
+        1.	Qual a principal a atividade da contratada?
         </Text>
         <TextInput
           style={{ marginTop: 25, zIndex: 1 }}
@@ -77,7 +77,7 @@ const Form = () => {
           onChange={(e) => setQ1(e.target.value)}
         />
         <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
-               Qual o tipo de controle do capital da contratada?
+        2.	Qual o tipo de controle do capital da contratada?
         </Text>
         <Select
           style={{ marginTop: 25, zIndex: 2 }}
@@ -87,8 +87,7 @@ const Form = () => {
           classNames={classes}
         />
         <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
-               A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?
-        </Text>
+         3.	Qual a origem do capital da contratada?
         <Select
           style={{ marginTop: 25, zIndex: 3 }}
           label=""
@@ -97,7 +96,7 @@ const Form = () => {
           classNames={classes}
         />
         <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
-               A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?
+         4.	A contratada possui algum integrante da sua administração, seus familiares , incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?     
         </Text>
         <Select
           style={{ marginTop: 25, zIndex: 4 }}
@@ -106,9 +105,8 @@ const Form = () => {
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
-        <p style={{ marginTop: 25, marfinLeft: 30}}>
-           5.	A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?
-        </p>
+        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+         5.	A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?
         <Select
           style={{ marginTop: 25, zIndex: 5 }}
           label=""
