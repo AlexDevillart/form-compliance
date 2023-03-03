@@ -65,9 +65,9 @@ const Form = () => {
     <>
       <PageHeader />
       <Container>
-        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+        <p weight={500} mb={7} sx={{ lineHeight: 1 }}>
         1.	Qual a principal a atividade da contratada?
-        </Text>
+        </p>
         <TextInput
           style={{ marginTop: 25, zIndex: 1 }}
           label=""
@@ -76,9 +76,9 @@ const Form = () => {
           //value={socialReason}
           onChange={(e) => setQ1(e.target.value)}
         />
-        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+        <p weight={500} mb={7} sx={{ lineHeight: 1 }}>
         2.	Qual o tipo de controle do capital da contratada?
-        </Text>
+        </p>
         <Select
           style={{ marginTop: 25, zIndex: 2 }}
           label=""
@@ -86,8 +86,9 @@ const Form = () => {
           placeholder="Selecione 1"
           classNames={classes}
         />
-        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+        <p weight={500} mb={7} sx={{ lineHeight: 1 }}>
          3.	Qual a origem do capital da contratada?
+         </p>
         <Select
           style={{ marginTop: 25, zIndex: 3 }}
           label=""
@@ -95,9 +96,9 @@ const Form = () => {
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
-        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+        <p weight={500} mb={7} sx={{ lineHeight: 1 }}>
          4.	A contratada possui algum integrante da sua administração, seus familiares , incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?     
-        </Text>
+        </p>
         <Select
           style={{ marginTop: 25, zIndex: 4 }}
           label=""
@@ -105,9 +106,10 @@ const Form = () => {
           placeholder="Selecione Sim ou Não"
           classNames={classes}
         />
-        <Text weight={500} mb={7} sx={{ lineHeight: 1 }}>
+        <p weight={500} mb={7} sx={{ lineHeight: 1 }}>
          5.	A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que ocupe, já ocupou ou é candidato na Administração Pública Federal, Distrital, Estadual e/ou Municipal há menos de 6 (seis) meses?
-        <Select
+        </p>
+          <Select
           style={{ marginTop: 25, zIndex: 5 }}
           label=""
           data={["Sim", "Não"]}
