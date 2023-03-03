@@ -70,7 +70,7 @@ const Form = () => {
           label="Qual a principal a atividade da contratada?"
           placeholder="Escreva aqui."
           classNames={classes}
-          value={socialReason}
+          //value={socialReason}
           onChange={(e) => setQ1(e.target.value)}
         />
 
