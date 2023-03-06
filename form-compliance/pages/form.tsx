@@ -3,6 +3,8 @@ import { createStyles, TextInput, Button, Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import MyDocument from "@/shared/pdf";
+import nodemailer from "nodemailer";
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -45,9 +47,12 @@ const Form = () => {
   const router = useRouter();
   const { cnpj, socialReason, checked } = router.query;
 
-  const [q1, setQ1] = useState("");
-  const [q2, setQ2] = useState("");
-  const [q3, setQ3] = useState("");
+  const [formData, setFormData] = useState({
+    q1: "",
+    q2: "",
+    q3: "",
+  });
+  const [pdf, setPdf] = useState(null);
 
   const verifyParams = () => {
     if (!cnpj || !socialReason || !checked) {
@@ -59,40 +64,86 @@ const Form = () => {
   //     verifyParams();
   //   }, []);
 
-  const processData = () => {};
+  const handleInputChange = (e: any) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const pdfDocument: any = await MyDocument(formData);
+    const pdfBlob = pdfDocument.toBlob();
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "seu_email@gmail.com",
+        pass: "sua_senha",
+      },
+    });
+
+    const mailOptions = {
+      from: "seu_email@gmail.com",
+      to: "destinatario_email@gmail.com",
+      subject: "Assunto do e-mail",
+      text: "Mensagem do e-mail",
+      attachments: [
+        {
+          filename: "formulario.pdf",
+          content: pdfBlob,
+        },
+      ],
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email enviado: " + info.response);
+      }
+    });
+
+    router.push(`/pdf-viewer?url=${encodeURIComponent(pdfUrl)}`);
+  };
 
   return (
     <>
       <PageHeader />
       <Container>
-        <TextInput
-          style={{ marginTop: 20, zIndex: 1 }}
-          label="Qual a principal a atividade da contratada?"
-          placeholder="Escreva aqui."
-          classNames={classes}
-          value={socialReason}
-          onChange={(e) => setQ1(e.target.value)}
-        />
+        <form onSubmit={handleSubmit}>
+          <TextInput
+            style={{ marginTop: 20, zIndex: 1 }}
+            label="Qual a principal a atividade da contratada?"
+            placeholder="Escreva aqui."
+            classNames={classes}
+            onChange={handleInputChange}
+          />
 
-        <Select
-          style={{ marginTop: 20, zIndex: 2 }}
-          label="Qual o tipo de controle do capital da contratada?"
-          data={["Capital aberto", "Capital fechado", "Capital misto"]}
-          placeholder="Selecione 1"
-          classNames={classes}
-        />
+          <Select
+            style={{ marginTop: 20, zIndex: 2, maxHeight: 400 }}
+            label="Qual o tipo de controle do capital da contratada?"
+            data={["Capital aberto", "Capital fechado", "Capital misto"]}
+            placeholder="Selecione 1"
+            classNames={classes}
+            onChange={handleInputChange}
+          />
 
-        <Select
-          style={{ marginTop: 20, zIndex: 3 }}
-          label="A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
-          data={["Sim", "Não"]}
-          placeholder="Selecione Sim ou Não"
-          classNames={classes}
-        />
+          <Select
+            style={{ marginTop: 20, zIndex: 3 }}
+            label="A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
+            data={["Sim", "Não"]}
+            placeholder="Selecione Sim ou Não"
+            classNames={classes}
+            onChange={handleInputChange}
+          />
 
-        <Button onClick={processData} className={classes.button}>
-          Continuar
-        </Button>
+          <Button type="submit" className={classes.button}>
+            Continuar
+          </Button>
+        </form>
       </Container>
     </>
   );
@@ -104,30 +155,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 90vw;
-`;
-
-const Title = styled.h1`
-  font-size: 28px;
-  font-weight: 900;
-  margin: 0;
-  padding: 0;
-  color: #000;
-`;
-
-const Subtitle = styled.h2`
-  font-size: 18px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  color: #000;
-`;
-
-const Header = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  flex-direction: column;
 `;
 
 export default Form;
