@@ -3,8 +3,9 @@ import { createStyles, TextInput, Button, Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import MyDocument from "@/shared/pdf";
-import nodemailer from "nodemailer";
+import jsPDF from "jspdf";
+import emailjs from "emailjs-com";
+import { useForm } from "react-hook-form";
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -45,100 +46,182 @@ const useStyles = createStyles((theme) => ({
 const Form = () => {
   const { classes } = useStyles();
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { cnpj, socialReason, checked } = router.query;
 
-  const [formData, setFormData] = useState({
-    q1: "",
-    q2: "",
-    q3: "",
-  });
-  const [pdf, setPdf] = useState(null);
+  const [q4, setQ4] = useState(false);
+  const [q25, setQ25] = useState(false);
 
-  const verifyParams = () => {
-    if (!cnpj || !socialReason || !checked) {
-      router.push("/");
-    }
-  };
+  // const verifyParams = () => {
+  //   if (!cnpj || !socialReason || !checked) {
+  //     router.push("/");
+  //   }
+  // };
 
   //   useEffect(() => {
   //     verifyParams();
   //   }, []);
 
-  const handleInputChange = (e: any) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const onSubmit = async (data: any) => {
+    const doc = new jsPDF();
+    doc.text(`Qual a principal a atividade da contratada?`, 10, 10);
+    doc.text(data.q1, 10, 20);
+    doc.text(data.q2, 10, 30);
+    doc.text(data.q3, 10, 40);
+    doc.text(data.q4, 10, 50);
+    doc.text(data.q4a, 10, 60);
+    doc.text(data.q25, 10, 70);
+    doc.text(data.q25a, 10, 80);
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+    const pdfBase64 = doc.output("datauristring");
 
-    const pdfDocument: any = await MyDocument(formData);
-    const pdfBlob = pdfDocument.toBlob();
-    const pdfUrl = URL.createObjectURL(pdfBlob);
+    const serviceId = "service_yioei57";
+    const templateId = "template_2l5sbq1";
+    const userId = "gu0684zbTebD4OmaR";
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "seu_email@gmail.com",
-        pass: "sua_senha",
-      },
-    });
-
-    const mailOptions = {
-      from: "seu_email@gmail.com",
-      to: "destinatario_email@gmail.com",
-      subject: "Assunto do e-mail",
-      text: "Mensagem do e-mail",
-      attachments: [
-        {
-          filename: "formulario.pdf",
-          content: pdfBlob,
-        },
-      ],
+    const emailData = {
+      to_email: "contato.joaoluccars@gmail.com",
+      from_name: "Alex Devillart",
+      from_email: "adevillart@gmail.com",
+      subject: "Teste",
+      url: pdfBase64,
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email enviado: " + info.response);
-      }
-    });
-
-    router.push(`/pdf-viewer?url=${encodeURIComponent(pdfUrl)}`);
+    emailjs
+      .send(serviceId, templateId, emailData, userId)
+      .then(() => {
+        // window.open(pdfBase64);
+        window.open(pdfBase64);
+      })
+      .catch((err) => {
+        console.error("Erro ao enviar email", err);
+      });
   };
 
   return (
     <>
       <PageHeader />
       <Container>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            style={{ marginTop: 20, zIndex: 1 }}
-            label="Qual a principal a atividade da contratada?"
-            placeholder="Escreva aqui."
-            classNames={classes}
-            onChange={handleInputChange}
-          />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Question>
+            {errors.q1 && <span>Esse campo é obrigatório</span>}
+            <Label>Qual a principal atividade da contratada?</Label>
+            <Input
+              defaultValue="test"
+              {...register("q1", { required: true })}
+            />
+          </Question>
 
-          <Select
-            style={{ marginTop: 20, zIndex: 2, maxHeight: 400 }}
-            label="Qual o tipo de controle do capital da contratada?"
-            data={["Capital aberto", "Capital fechado", "Capital misto"]}
-            placeholder="Selecione 1"
-            classNames={classes}
-            onChange={handleInputChange}
-          />
+          <Question>
+            {errors.q2 && <span>Esse campo é obrigatório</span>}
+            <Label>Qual o tipo de controle do capital da contratada?</Label>
+            <SelectInput {...register("q2", { required: true })}>
+              <option selected={true} disabled={true}>
+                Selecione
+              </option>
+              <option value="Capital Aberto">Capital Aberto</option>
+              <option value="Capital Fechado">Capital Fechado</option>
+              <option value="Capital Misto">Capital Misto</option>
+            </SelectInput>
+          </Question>
 
-          <Select
-            style={{ marginTop: 20, zIndex: 3 }}
-            label="A contratada possui algum integrante da sua administração, seus familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha reta, que atualmente trabalhem ou que já trabalharam na Casa e Vídeo ou nas empresas da Casa e Vídeo?"
-            data={["Sim", "Não"]}
-            placeholder="Selecione Sim ou Não"
-            classNames={classes}
-            onChange={handleInputChange}
-          />
+          <Question>
+            {errors.q3 && <span>Esse campo é obrigatório</span>}
+            <Label>Qual a origem do capital da contratada?</Label>
+            <SelectInput {...register("q3", { required: true })}>
+              <option selected={true} disabled={true}>
+                Selecione
+              </option>
+              <option value="Brasileira">Brasileira</option>
+              <option value="Estrangeira">Estrangeira</option>
+            </SelectInput>
+          </Question>
+
+          <Question>
+            {errors.q4 && <span>Esse campo é obrigatório</span>}
+            <Label>
+              A contratada possui algum integrante da sua administração, seus
+              familiares, incluindo (ex)cônjuges, (ex)companheiros, em linha
+              reta, que atualmente trabalhem ou que já trabalharam na Casa e
+              Vídeo ou nas empresas da Casa e Vídeo?
+            </Label>
+            <SelectInput
+              {...register("q4", { required: true })}
+              onChange={(e: any) => {
+                setQ4(e.target.value === "Sim");
+              }}
+            >
+              <option selected={true} disabled={true}>
+                Selecione
+              </option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </SelectInput>
+          </Question>
+
+          {q4 && (
+            <Question>
+              {errors.q4a && <span>Esse campo é obrigatório</span>}
+              <Label>Caso Positivo, informar grau de parentesco: </Label>
+              <Input
+                defaultValue="test"
+                {...register("q4a", { required: true })}
+              />
+            </Question>
+          )}
+
+          {/* Questao 25 */}
+          <Question>
+            {errors.q25 && <span>Esse campo é obrigatório</span>}
+            <Label>
+              25) A contratada possui conhecimento de que integrantes da
+              administração, funcionários e/ou seus familiares em linha reta
+              e/ou qualquer outro pertencente ao mesmo grupo econômico e
+              terceirizados já ofereceram, pagaram, prometeram pagar,
+              autorizaram o pagamento, direta ou indiretamente, ou foram
+              acusados de oferecer, pagar, prometer pagar ou autorizar o
+              pagamento, direta ou indiretamente, de qualquer dinheiro ou
+              qualquer coisa de valor a qualquer pessoa natural ou jurídica que
+              exerça cargo, emprego ou função pública, bem como à consultores,
+              representantes, parceiros, ou quaisquer terceiros com a finalidade
+              de influenciar qualquer ato ou decisão do agente ou do governo, ou
+              direcionar negócios?
+            </Label>
+            <SelectInput
+              {...register("q25", { required: true })}
+              onChange={(e: any) => {
+                setQ25(
+                  e.target.value === "Sim. Eu mesmo." ||
+                    e.target.value ===
+                      "Sim. Conheço alguém que já realizou estas práticas na empresa."
+                );
+              }}
+            >
+              <option selected={true} disabled={true}>
+                Selecione
+              </option>
+              <option value="Sim. Eu mesmo.">Sim. Eu mesmo.</option>
+              <option value="Sim. Conheço alguém que já realizou estas práticas na empresa.">
+                Sim. Conheço alguém que já realizou estas práticas na empresa.
+              </option>
+              <option value="Não.">Não.</option>
+            </SelectInput>
+          </Question>
+
+          {q25 && (
+            <Question>
+              {errors.q25a && <span>Esse campo é obrigatório</span>}
+              <Label>Caso Positivo, informar o caso:: </Label>
+              <Input
+                defaultValue="test"
+                {...register("q25a", { required: true })}
+              />
+            </Question>
+          )}
 
           <Button type="submit" className={classes.button}>
             Continuar
@@ -155,6 +238,40 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 90vw;
+`;
+
+const Question = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 90vw;
+  margin-top: 20px;
+`;
+
+const Label = styled.label`
+  pointer-events: none;
+  font-size: 18px;
+  padding-top: 5px;
+  z-index: 1;
+`;
+
+const Input = styled.input`
+  height: auto;
+  width: 90vw;
+  padding: 18px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-top: 10px;
+`;
+
+const SelectInput = styled.select`
+  height: auto;
+  width: 90vw;
+  padding: 18px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-top: 10px;
 `;
 
 export default Form;

@@ -1,5 +1,12 @@
 import React from "react";
-import { Page, Document, Font, StyleSheet, Text } from "@react-pdf/renderer";
+import {
+  pdf,
+  Page,
+  Document,
+  Font,
+  StyleSheet,
+  Text,
+} from "@react-pdf/renderer";
 
 Font.register({
   family: "Open Sans",
@@ -28,14 +35,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyDocument = ({ data }: any) => {
+const MyDocument = (form: any) => {
   return (
     <Document>
       <Page style={styles.page}>
         <Text style={styles.title}>Dados do formulário</Text>
-        <Text style={styles.text}>q1: {data.q1}</Text>
-        <Text style={styles.text}>q2: {data.q2}</Text>
-        <Text style={styles.text}>q3: {data.q3}</Text>
+        <Text style={styles.text}>q1: {form.q1}</Text>
       </Page>
     </Document>
   );
