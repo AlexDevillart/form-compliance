@@ -108,10 +108,10 @@ const Form = () => {
     const userId = "gu0684zbTebD4OmaR";
 
     const emailData = {
-      to_email: "contato.joaoluccars@gmail.com",
+      to_email: "adevillart@casaevideo.com.br",
       from_name: "Alex Devillart",
       from_email: "adevillart@gmail.com",
-      subject: "Teste",
+      subject: "Relatório Compliance CVBR",
       url: pdfBase64,
     };
 
