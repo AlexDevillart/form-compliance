@@ -8,6 +8,32 @@ import {
 } from "@mantine/core";
 import { useRouter } from "next/router";
 
+const NotFoundTitle: React.FC = () => {
+  const { classes } = useStyles();
+  const router = useRouter();
+
+  return (
+    <Container className={classes.root}>
+      <div className={classes.label}>404</div>
+      <Title className={classes.title}>Você encontrou um lugar secreto.</Title>
+      <Text
+        color="dimmed"
+        size="lg"
+        align="center"
+        className={classes.description}
+      >
+        Infelizmente, esta é apenas uma página 404. Você pode ter digitado
+        errado endereço ou a página foi movida para outro URL.
+      </Text>
+      <Group position="center">
+        <Button onClick={() => router.push("/")} variant="subtle" size="md">
+          Leve-me de volta à página inicial
+        </Button>
+      </Group>
+    </Container>
+  );
+};
+
 const useStyles = createStyles((theme) => ({
   root: {
     paddingTop: 80,
@@ -48,31 +74,5 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.xl * 1.5,
   },
 }));
-
-const NotFoundTitle = () => {
-  const { classes } = useStyles();
-  const router = useRouter();
-
-  return (
-    <Container className={classes.root}>
-      <div className={classes.label}>404</div>
-      <Title className={classes.title}>Você encontrou um lugar secreto.</Title>
-      <Text
-        color="dimmed"
-        size="lg"
-        align="center"
-        className={classes.description}
-      >
-        Infelizmente, esta é apenas uma página 404. Você pode ter digitado
-        errado endereço ou a página foi movida para outro URL.
-      </Text>
-      <Group position="center">
-        <Button onClick={() => router.push("/")} variant="subtle" size="md">
-          Leve-me de volta à página inicial
-        </Button>
-      </Group>
-    </Container>
-  );
-};
 
 export default NotFoundTitle;
