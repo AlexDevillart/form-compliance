@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="<%= language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Casa & vídeo</title>
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dropdown.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle btn-language" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= text["pages.index.button.language"] %>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/">Português</a></li>
+          <li><a class="dropdown-item" href="/en">English</a></li>
+        </ul>
+    </div>
+
+    <form class="pages" action="/new?lang=<%= language %>" method="POST">
+        <section class="page">
+            <div>
+
+            <h1 class="title"><%= text["pages.index.title"] %> – <%= text["pages.index.caption"] %></h1>
+            
+            <p class="b"><%= text["pages.subtitle"] %></p>
+            
+            <div class="q dados">
+                <label for="dados"><%= text["pages.index.corporate.name"] %></label>
+                <input id="dados" name="dado1" class="w100" type="text" required>
+            </div>
+            <div class="q dados2">
+                <label for="dados2"><%= text["pages.index.corporate.cnpj"] %></label>
+                <input id="dados2" name="dado2" class="w100" type="text" required>
+            </div>
+
+            <p class="text-center bold mt-4"><%= text["pages.warning.title"] %></p>
+
+            <p><%= text["pages.warning.paragraph1"] %></p>
+            <ul>
+                <li><%= text["pages.warning.paragraph1.iten1"] %></li>
+                <li><%= text["pages.warning.paragraph1.iten2"] %></li>
+                <li><%= text["pages.warning.paragraph1.iten3"] %></li>
+            </ul>
+
+            <p class="mt-3"><%= text["pages.warning.paragraph2"] %></p>
+
+            <p class="mt-3"><%= text["pages.warning.paragraph3"] %></p>
+
+            <p class="mt-3"><%= text["pages.warning.paragraph4"] %></p>
+
+            <p class="mt-3"><%= text["pages.warning.paragraph5"] %></p>
+
+            </div>
+            <div class="footer">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+
+        <section class="page">
+            <div>
+
+            <label for="q1"><%= text["pages.form.Q1"] %></label>
+            <input id="q1" name="q1" class="w100" type="text" required>
+
+            <p class="mt-4"><%= text["pages.form.Q2"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q2.select"].length; i++) { %>
+                <label>
+                    <input id="q2-<%= i %>" type="radio" name="q2" value="<%= i %>" required><%= text["pages.form.Q2.select"][i] %>
+                </label>
+            <% } %>
+
+            <p class="mt-4"><%= text["pages.form.Q3"] %></p>
+            <div style="display: inline-block;">
+            <% for(var i = 0; i < text["pages.form.Q3.select"].length; i++) { %>
+                <label>
+                    <input id="q3-<%= i %>" type="radio" name="q3" value="<%= i %>" required><%= text["pages.form.Q3.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q4"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q4.select"].length; i++) { %>
+                    <label>
+                        <input id="q4-<%= i %>" type="radio" name="q4" value="<%= i %>" required><%= text["pages.form.Q4.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q4_iftrue mt"><%= text["pages.form.Q4.select.iftrue"] %></label>
+                <input id="q4_iftrue" name="q4_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q5"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q5.select"].length; i++) { %>
+                    <label>
+                        <input id="q5-<%= i %>" type="radio" name="q5" value="<%= i %>" required><%= text["pages.form.Q5.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q5_iftrue mt"><%= text["pages.form.Q5.select.iftrue"] %></label>
+                <input id="q5_iftrue" name="q5_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q6"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q6.select"].length; i++) { %>
+                    <label>
+                        <input id="q6-<%= i %>" type="radio" name="q6" value="<%= i %>" required><%= text["pages.form.Q6.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q6_iftrue mt"><%= text["pages.form.Q6.select.iftrue"] %></label>
+                <input id="q6_iftrue" name="q6_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q7"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q7.select"].length; i++) { %>
+                    <label>
+                        <input id="q7-<%= i %>" type="radio" name="q7" value="<%= i %>" required><%= text["pages.form.Q7.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q7_iftrue mt"><%= text["pages.form.Q7.select.iftrue"] %></label>
+                <input id="q7_iftrue" name="q7_iftrue" class="w100" type="text">
+            </div>
+
+            </div>
+            
+            <div class="footer">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+
+        <section class="page">
+            <div>
+
+            <p class="mt-4"><%= text["pages.form.Q8"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q8.select"].length; i++) { %>
+                <label>
+                    <input id="q8-<%= i %>" type="radio" name="q8" value="<%= i %>" required><%= text["pages.form.Q8.select"][i] %>
+                </label>
+            <% } %>
+        
+            <div style="display: inline-block">
+            <p class="mt-4"><%= text["pages.form.Q9"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q9.select"].length; i++) { %>
+                <label>
+                    <input id="q9-<%= i %>" type="radio" name="q9" value="<%= i %>" required><%= text["pages.form.Q9.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: inline-block">
+            <p class="mt-4"><%= text["pages.form.Q10"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q10.select"].length; i++) { %>
+                <label>
+                    <input id="q10-<%= i %>" type="radio" name="q10" value="<%= i %>" required><%= text["pages.form.Q10.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: inline-block">
+            <p class="mt-4"><%= text["pages.form.Q11"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q11.select"].length; i++) { %>
+                <label>
+                    <input id="q11-<%= i %>" type="radio" name="q11" value="<%= i %>" required><%= text["pages.form.Q11.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q12"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q12.select"].length; i++) { %>
+                    <label>
+                        <input id="q12-<%= i %>" type="radio" name="q12" value="<%= i %>" required><%= text["pages.form.Q12.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q12_iftrue mt"><%= text["pages.form.Q12.select.iftrue"] %></label>
+                <input id="q12_iftrue" name="q12_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q13"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q13.select"].length; i++) { %>
+                    <label>
+                        <input id="q13-<%= i %>" type="radio" name="q13" value="<%= i %>" required><%= text["pages.form.Q13.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q13_iftrue mt"><%= text["pages.form.Q13.select.iftrue"] %></label>
+                <input id="q13_iftrue" name="q13_iftrue" class="w100" type="text">
+            </div>
+            
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q14"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q14.select"].length; i++) { %>
+                    <label>
+                        <input id="q14-<%= i %>" type="radio" name="q14" value="<%= i %>" required><%= text["pages.form.Q14.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q14_iftrue mt"><%= text["pages.form.Q14.select.iftrue"] %></label>
+                <input id="q14_iftrue" name="q14_iftrue" class="w100" type="text">
+            </div>
+
+            </div>
+            
+            <div class="footer">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+        
+        <section class="page">
+            <div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q15"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q15.select"].length; i++) { %>
+                    <label>
+                        <input id="q15-<%= i %>" type="radio" name="q15" value="<%= i %>" required><%= text["pages.form.Q15.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+            
+            <div class="mt-1">
+                <label for="q15_iftrue mt"><%= text["pages.form.Q15.select.iftrue"] %></label>
+                <input id="q15_iftrue" name="q15_iftrue" class="w100" type="text">
+            </div>
+    
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q16"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q16.select"].length; i++) { %>
+                    <label>
+                        <input id="q16-<%= i %>" type="radio" name="q16" value="<%= i %>" required><%= text["pages.form.Q16.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q16_iftrue mt"><%= text["pages.form.Q16.select.iftrue"] %></label>
+                <input id="q16_iftrue" name="q16_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+            <p class="mt-4"><%= text["pages.form.Q17"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q17.select"].length; i++) { %>
+                <label>
+                    <input id="q17-<%= i %>" type="radio" name="q17" value="<%= i %>" required><%= text["pages.form.Q17.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: block">
+                <p class="mt-4"><%= text["pages.form.Q18"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q18.select"].length; i++) { %>
+                    <label>
+                        <input id="q18-<%= i %>" type="radio" name="q18" value="<%= i %>" required><%= text["pages.form.Q18.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q18_iftrue mt"><%= text["pages.form.Q18.select.iftrue"] %></label>
+                <input id="q18_iftrue" name="q18_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q19"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q19.select"].length; i++) { %>
+                    <label>
+                        <input id="q19-<%= i %>" type="radio" name="q19" value="<%= i %>" required><%= text["pages.form.Q19.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q19_iftrue mt"><%= text["pages.form.Q19.select.iffalse"] %></label>
+                <input id="q19_iftrue" name="q19_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q20"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q20.select"].length; i++) { %>
+                    <label>
+                        <input id="q20-<%= i %>" type="radio" name="q20" value="<%= i %>" required><%= text["pages.form.Q20.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q20_iftrue mt"><%= text["pages.form.Q20.select.iftrue"] %></label>
+                <input id="q20_iftrue" name="q20_iftrue" class="w100" type="text">
+            </div>
+            </div>
+
+            <div class="footer">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+        
+        <section class="page">
+            <div>
+
+            <p class="mt-4"><%= text["pages.form.Q21"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q21.select"].length; i++) { %>
+                <label>
+                    <input id="q21-<%= i %>" type="radio" name="q21" value="<%= i %>" required><%= text["pages.form.Q21.select"][i] %>
+                </label>
+            <% } %>
+
+            <p class="mt-4"><%= text["pages.form.Q22"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q22.select"].length; i++) { %>
+                <label>
+                    <input id="q22-<%= i %>" type="radio" name="q22" value="<%= i %>" required><%= text["pages.form.Q22.select"][i] %>
+                </label>
+            <% } %>
+
+            <div style="display: inline-block">
+            <p class="mt-4"><%= text["pages.form.Q23"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q23.select"].length; i++) { %>
+                <label>
+                    <input id="q23-<%= i %>" type="radio" name="q23" value="<%= i %>" required><%= text["pages.form.Q23.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: inline-block">
+            <p class="mt-4"><%= text["pages.form.Q24"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q24.select"].length; i++) { %>
+                <label>
+                    <input id="q24-<%= i %>" type="radio" name="q24" value="<%= i %>" required><%= text["pages.form.Q24.select"][i] %>
+                </label>
+            <% } %>
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q25"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q25.select"].length; i++) { %>
+                    <label>
+                        <input id="q25-<%= i %>" type="radio" name="q25" value="<%= i %>" required><%= text["pages.form.Q25.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q25_iftrue mt"><%= text["pages.form.Q25.select.iftrue"] %></label>
+                <input id="q25_iftrue" name="q25_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q26"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q26.select"].length; i++) { %>
+                    <label>
+                        <input id="q26-<%= i %>" type="radio" name="q26" value="<%= i %>" required><%= text["pages.form.Q26.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q26_iftrue mt"><%= text["pages.form.Q26.select.iftrue"] %></label>
+                <input id="q26_iftrue" name="q26_iftrue" class="w100" type="text">
+            </div>
+
+            </div>
+
+            <div class="footer mt-3">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+
+        <section class="page">
+            <div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q27"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q27.select"].length; i++) { %>
+                    <label>
+                        <input id="q27-<%= i %>" type="radio" name="q27" value="<%= i %>" required><%= text["pages.form.Q27.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q27_iftrue mt"><%= text["pages.form.Q27.select.iftrue"] %></label>
+                <input id="q27_iftrue" name="q27_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q28"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q28.select"].length; i++) { %>
+                    <label>
+                        <input id="q28-<%= i %>" type="radio" name="q28" value="<%= i %>" required><%= text["pages.form.Q28.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q28_iftrue mt"><%= text["pages.form.Q28.select.iftrue"] %></label>
+                <input id="q28_iftrue" name="q28_iftrue" class="w100" type="text">
+            </div>
+
+            <div style="display: inline-block">
+                <p class="mt-4"><%= text["pages.form.Q29"] %></p>
+                <% for(var i = 0; i < text["pages.form.Q29.select"].length; i++) { %>
+                    <label>
+                        <input id="q29-<%= i %>" type="radio" name="q29" value="<%= i %>" required><%= text["pages.form.Q29.select"][i] %>
+                    </label>
+                <% } %>
+            </div>
+              
+            <div class="mt-1">
+                <label for="q29_iftrue mt"><%= text["pages.form.Q29.select.iftrue"] %></label>
+                <input id="q29_iftrue" name="q29_iftrue" class="w100" type="text">
+            </div>
+
+            <p class="mt-4"><%= text["pages.form.Q30"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q30.select"].length; i++) { %>
+                <label>
+                    <input id="q30-<%= i %>" type="radio" name="q30" value="<%= i %>" required><%= text["pages.form.Q30.select"][i] %>
+                </label>
+            <% } %>
+
+            <p class="mt-4"><%= text["pages.form.Q30.select.iftrue.text1"] %></p>
+            <% for(var i = 0; i < text["pages.form.Q30.select.iftrue.text1.select"].length; i++) { %>
+                <label>
+                    <input id="q30_1-<%= i %>" type="radio" name="q30_1" value="<%= i %>"><%= text["pages.form.Q30.select.iftrue.text1.select"][i] %>
+                </label>
+            <% } %>
+
+            <div style="display: block;" class="mt-3">
+                <label for="q30_2"><%= text["pages.form.Q30.select.iftrue.text1.iffalse"] %></label>
+                <input id="q30_2" name="q30_2" class="w100" type="text">
+            </div>
+            <div>
+
+            <div class="footer mt-5">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+        <section class="page">
+            <div>
+
+            <p class="mt-5"><%= text["pages.form.declare"] %></p>
+
+            <p class="mt-3"><%= date %>.</p>
+
+            <div class="dados">
+                <p><%= text["pages.form.email"] %></p>
+                <input type="email" name="email" class="w100" required>
+            </div>
+            <div class="dados2">
+                <p><%= text["pages.form.signature"] %></p>
+                <input type="text" name="responsible" class="w100" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-5 w100"><%= text["pages.form.button.name"] %></button>
+            
+            </div>
+
+            <div class="footer">
+                <img src="/img/casa_e_video.png" alt="Logo Case & Vídeo">
+            </div>
+        </section>
+    </form>
+
+    <center>
+    <div id="modalError" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&times;</i>
+                    </div>				
+                    <h4 class="modal-title w-100">Erro!</h4>	
+                </div>
+                <div class="modal-body">
+                    <p class="text-center" id="msgError"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </center>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
