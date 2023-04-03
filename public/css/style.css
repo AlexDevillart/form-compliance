@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "Calibri";
+    src: url("./calibri-font-family/calibri-regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+}
+
+input:focus {
+    outline: none;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.w100 {
+    width: 100%;
+}
+
+body {
+    font-family: "Calibri", sans-serif;
+    background-color: #5f6368;
+    text-align: justify;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.page {
+    margin: 5px;
+    width: 797px;
+    min-height: 1128px;
+    height: auto;
+    background: white url("../img/img.jpeg") no-repeat;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.dados {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.dados2 {
+    border: 1px solid black;
+    padding: 10px;
+    border-top: none;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    background: rgb(254, 241, 6);
+}
+
+@media (max-width: 808px) {
+    .btn-language {
+        background-color: transparent;
+        color: black;
+    }
+}
